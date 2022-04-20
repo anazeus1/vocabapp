@@ -54,5 +54,6 @@ class _AddWordState extends State<AddWord> {
     word.german = german;
     final box = Boxes.getWords();
     box.add(word);
+    
   }
 }

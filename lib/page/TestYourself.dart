@@ -19,6 +19,7 @@ class _TestYourselfState extends State<TestYourself> {
 
   final Guess = TextEditingController();
   String germanWord = "";
+  Color colorGerman = Colors.green;
 
   @override
   Widget build(BuildContext context) {
@@ -31,34 +32,65 @@ class _TestYourselfState extends State<TestYourself> {
 
   Widget buildContent(words) {
     if (counter >= numberOfWords) {
-      return Text("no more worlds");
+      return Center(child: Text("no more worlds"));
     } else {
       return Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text("${words[counter].english}"),
-          Text('$germanWord'),
-          TextField(
-            controller: Guess,
+          Text(
+            "${words[counter].english}",
+            style: TextStyle(color: Colors.blue, fontSize: 25),
           ),
-          Row(
-            children: [
-              ElevatedButton(
-                  onPressed: () {
-                    setState(() {
-                      germanWord = words[counter].german;
-                    });
-                  },
-                  child: Text("Guess")),
-              ElevatedButton(
-                  onPressed: () {
-                    setState(() {
-                      counter += 1;
-                      germanWord = "";
-                      Guess.text = "";
-                    });
-                  },
-                  child: Text("Next word")),
-            ],
+          Divider(
+            color: Colors.lightBlue,
+            height: 16,
+            indent: 20,
+            endIndent: 20,
+          ),
+          Text(
+            '$germanWord',
+            style: TextStyle(color: colorGerman, fontSize: 25),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: TextField(
+              controller: Guess,
+              style: TextStyle(fontSize: 25),
+            ),
+          ),
+          Center(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: ElevatedButton(
+                      onPressed: () {
+                        setState(() {
+                          germanWord = words[counter].german;
+                          if (germanWord == Guess.text) {
+                            colorGerman = Colors.green;
+                          } else {
+                            colorGerman = Colors.red;
+                          }
+                        });
+                      },
+                      child: Text("Guess")),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: ElevatedButton(
+                      onPressed: () {
+                        setState(() {
+                          counter += 1;
+                          germanWord = "";
+                          Guess.text = "";
+                        });
+                      },
+                      child: Text("Next word")),
+                ),
+              ],
+            ),
           )
         ],
       );
