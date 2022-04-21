@@ -1,24 +1,24 @@
 import 'package:flutter/material.dart';
-
 import 'package:vocabapp/model/worte.dart';
 
-class WordList extends StatefulWidget {
+class WrongWords extends StatefulWidget {
   @override
-  State<WordList> createState() => _WordListState();
+  State<WrongWords> createState() => _WrongWordsState();
 }
 
-class _WordListState extends State<WordList> {
+class _WrongWordsState extends State<WrongWords> {
   @override
   Widget build(BuildContext context) {
+    print(wrongWords.length);
     return Scaffold(
         appBar: AppBar(
-          title: const Text("Word List"),
+          title: Text('Wrong words'),
         ),
         body: ListView.builder(
           padding: EdgeInsets.all(8),
-          itemCount: words.length,
+          itemCount: wrongWords.length,
           itemBuilder: (BuildContext context, int index) {
-            final word = words[index];
+            final word = wrongWords[index];
             if (buildWord(context, word) == null) {
               return Text("7a7a");
             } else {

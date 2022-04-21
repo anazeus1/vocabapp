@@ -1,26 +1,25 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
-import 'AddWord.dart';
-import 'package:vocabapp/boxes.dart';
-import 'package:hive/hive.dart';
-import 'package:vocabapp/model/word.dart';
-import 'package:hive_flutter/hive_flutter.dart';
+import 'package:vocabapp/model/worte.dart';
+import 'package:vocabapp/page/wrongWords.dart';
 
 class TestYourself extends StatefulWidget {
   @override
   State<TestYourself> createState() => _TestYourselfState();
 }
 
-class _TestYourselfState extends State<TestYourself> {
-  final originalWords = Boxes.getWords().values.toList().cast<Word>();
-  late final words = originalWords.toList();
+var selectedWord = words[0];
 
-  late int numberOfWords = originalWords.length;
+class _TestYourselfState extends State<TestYourself> {
+  late int numberOfWords = words.length;
+  var newWords = words.toList();
   int counter = 0;
+  var rand = Random();
 
   final Guess = TextEditingController();
   String germanWord = "";
   Color colorGerman = Colors.green;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,14 +30,14 @@ class _TestYourselfState extends State<TestYourself> {
   }
 
   Widget buildContent(words) {
-    if (counter >= numberOfWords) {
+    if (newWords.length == 1) {
       return Center(child: Text("no more worlds"));
     } else {
       return Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
-            "${words[counter].english}",
+            "${selectedWord.english}",
             style: TextStyle(color: Colors.blue, fontSize: 25),
           ),
           Divider(
@@ -67,11 +66,15 @@ class _TestYourselfState extends State<TestYourself> {
                   child: ElevatedButton(
                       onPressed: () {
                         setState(() {
-                          germanWord = words[counter].german;
+                          germanWord =
+                              selectedWord.article + " " + selectedWord.german;
+
                           if (germanWord == Guess.text) {
                             colorGerman = Colors.green;
                           } else {
                             colorGerman = Colors.red;
+                            wrongWords.add(selectedWord);
+                            print(wrongWords.length);
                           }
                         });
                       },
@@ -82,7 +85,10 @@ class _TestYourselfState extends State<TestYourself> {
                   child: ElevatedButton(
                       onPressed: () {
                         setState(() {
-                          counter += 1;
+                          newWords.remove(selectedWord);
+                          selectedWord =
+                              newWords[rand.nextInt(newWords.length)];
+
                           germanWord = "";
                           Guess.text = "";
                         });
@@ -91,7 +97,12 @@ class _TestYourselfState extends State<TestYourself> {
                 ),
               ],
             ),
-          )
+          ),
+          ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/wrongWords');
+              },
+              child: Text("Wrong words"))
         ],
       );
     }
