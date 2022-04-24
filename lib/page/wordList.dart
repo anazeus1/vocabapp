@@ -3,11 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:vocabapp/model/worte.dart';
 
 class WordList extends StatefulWidget {
+  
   @override
   State<WordList> createState() => _WordListState();
 }
 
 class _WordListState extends State<WordList> {
+  _WordListState(words)
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -1,13 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:vocabapp/model/worte.dart';
-import 'package:vocabapp/page/home.dart';
-import 'dart:io';
-import 'package:flutter/src/material/about.dart';
 
 class AddWord extends StatefulWidget {
   @override
-  final Storage storage;
-  AddWord({required Key key, required this.storage}) : super(key: key);
   State<AddWord> createState() => _AddWordState();
 }
 
@@ -17,24 +12,6 @@ class _AddWordState extends State<AddWord> {
   final germanWord = TextEditingController();
   final article = TextEditingController();
   final plural = TextEditingController();
-
-  @override
-  void initState() {
-    super.initState();
-    widget.storage.readData().then((String value) {
-      setState(() {
-        state = value;
-      });
-    });
-  }
-
-  Future<File> writeData() async {
-    setState(() {
-      state = englishWord.text;
-      englishWord.text = "";
-    });
-    return widget.storage.writeData(state);
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -87,22 +64,7 @@ class _AddWordState extends State<AddWord> {
               )
             ],
           ),
-          ElevatedButton(onPressed: writeData, child: const Text("Add word")),
-          Text('${state ?? "file is empty"}'),
-          FutureBuilder<Directory>(builder:
-              (BuildContext context, AsyncSnapshot<Directory> snapshot) {
-            Text text = Text('');
-            if (snapshot.hasError) {
-              text = Text("Error ${snapshot.error}");
-            } else if (snapshot.hasData) {
-              text = Text('path:${snapshot.data?.path}');
-            } else {
-              text = Text("Unavaible");
-            }
-            return new Container(
-              child: text,
-            );
-          })
+          ElevatedButton(onPressed: () {}, child: const Text("Add word")),
         ],
       )),
     );

@@ -14,11 +14,28 @@ var wrongWords = [];
 
 var words = [
   Word("Task", "Aufgabe", "die", "-n"),
-  Word("dog", "Hund", "der", "-e"),
-  Word("cat", "katze", "die", "-n"),
-  Word("School", "Schule", "die", "-n"),
-  Word("Semester", "Semester", "der", "-"),
-  Word("Computer", "Computer", "der", "-s")
+  Word("Goethe Institute", "Goethe-Institut", "das", "-e"),
+  Word("Class", "Klasse", "die", "-n"),
+  Word("News", "Nachricht", "die", "-en"),
+  Word("Term", "Semester", "das", "-"),
+  Word("Language school", "Sprachenschule", "die", "-n"),
+  Word("Test", "Test", "der", "-s"),
+  Word("Type", "Typ", "der", "-en"),
+  Word("Community school", "Volkshochschule", "die", "-n"),
+  Word("to look at", "anschauen,", "hat", "angeschaut"),
+  Word("to write down", "aufschreiben", "hat", "aufgeschrieben"),
+  Word("to move", "bewegen (sich)", "hat", "sich bewegt"),
+  Word("to correct", "korrigieren", "hat", "korrigiert"),
+  Word("to solve", "lösen,", "hat", "gelöst"),
+  Word("to notice", "merken (sich)", "hat sich", "gemerkt"),
+  Word("Translate,", "übersetzen,", "hat", "übersetzt"),
+  Word("to repeat", "wiederholen", "hat", "wiederholt"),
+  Word("Present", "Gegenwart", "die", "-"),
+  Word("past", "Vergangenheit", "die", "-"),
+  Word("to plan", "planen,", "hat", "geplant"),
+  Word("to fall in love", "verlieben (sich)", "hat", " sich verliebt"),
+  Word("to Travel", "verreisen,", "ist", "verreist"),
+  Word("possible", "möglich", "", ""),
 ];
 
 class jobs extends StatefulWidget {

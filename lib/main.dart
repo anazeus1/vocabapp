@@ -4,8 +4,6 @@ import 'package:vocabapp/page/home.dart';
 import 'package:vocabapp/page/TestYourself.dart';
 import 'package:vocabapp/page/wordList.dart';
 import 'package:vocabapp/page/wrongWords.dart';
-import 'dart:async';
-import 'dart:io';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -13,10 +11,7 @@ Future main() async {
   runApp(MaterialApp(
     routes: {
       "/": (context) => Home(),
-      "/AddWord": (context) => AddWord(
-            storage: Storage(),
-            key: Key("o"),
-          ),
+      "/AddWord": (context) => AddWord(),
       "/WordList": (context) => WordList(),
       "/TestYourself": (context) => TestYourself(),
       "/wrongWords": (context) => WrongWords(),
