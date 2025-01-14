@@ -3,6 +3,7 @@ import 'package:vocabapp/page/TestList.dart';
 import 'package:vocabapp/page/levelList.dart';
 import 'package:vocabapp/page/splash.dart';
 import 'package:vocabapp/page/TestList.dart';
+import 'package:vocabapp/page/TestList.dart';
 
 Future main() async {
   runApp(MaterialApp(
